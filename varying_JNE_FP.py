@@ -1,5 +1,5 @@
-# To run the code we need to following:
-#       pip3 install pandas numpy matplotlib
+# To run the code we need the following:
+#       pip3 install pandas numpy matplotlib statistics
 
 import statistics as stat
 
@@ -67,11 +67,13 @@ def plotData(datatable, xaxis, ymax, labels, xaxisName, yaxisName, name):
     # set x scale to log if it is FP
     if xaxisName == 'FP':
         plt.xscale('log')
+        # plt.yscale('log')
         
 
     # add x,y labels
     plt.xlabel(xaxisName)
-    plt.ylabel(yaxisName + ' (%)')
+    if xaxisName == 'FP':
+        plt.ylabel(yaxisName + ' (%)' + " / " +  'FP')
 
     # add legend
     plt.legend(loc=2, prop={'size': 5})
@@ -149,6 +151,9 @@ def dataProcessAndPlotPerSetting(filename, targets, base, baseIndex,
     baseData = dataframe[base].unique()
     # sort baseData to non-descreasing
     baseData.sort()
+
+    print("The base is ", baseData)
+
 
     dataForPlot = []
     yMaxPerPlot = []
